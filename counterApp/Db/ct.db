@@ -1,0 +1,54 @@
+record(longin, "$(P):VALUE") {
+  field(DESC, "Counter value")
+  field(VAL,  "0")
+  field(FLNK, "$(P):ACTION:CALC.PROC")
+}
+record(calcout, "$(P):CALC") {
+  field(DESC, "Counter calc")
+  field(VAL,  "0")
+  field(INPA, "$(READPV) CPP")
+  field(INPB, "$(P):THRESH")
+  field(INPC, "$(P):VALUE")
+  field(CALC, "A>=B?(C+1):C")
+  field(OUT,  "$(P):VALUE PP")
+}
+record(ai, "$(P):THRESH") {
+  field(DESC, "Counter threshold")
+  field(PREC, "3")
+}
+record(longout, "$(P):RESET") {
+  field(DESC, "Counter reset")
+  field(VAL,  "0")
+  field(OUT,  "$(P):VALUE PP")
+}
+record(longout, "$(P):NCOUNTS") {
+  field(DESC, "Number of counts for action")
+  #field(VAL,  "3")
+  field(FLNK, "$(P):ACTION:CALC.PROC")
+}
+#record(mbbo, "$(P):ACTION:PV") {
+#  field(DESC, "Counter action PV")
+#  field(ZRVL, "ESB:THSC01:SHUTTER:OC CPP")
+#  field(ONVL, "ESB:SDG01:BO:SC:CH1 CPP")
+#  field(ZRST, "UV Shutter")
+#  field(ONST, "Pockels Cell")
+#  field(OUT,  "$(P):ACTION.OUT PP")
+#}
+record(longout, "$(P):ACTION") {
+  field(DESC, "Counter action")
+  field(DISA, "1")
+  field(OUT,  "$(ACTIONPV) CPP")
+}
+record(calcout, "$(P):ACTION:CALC") {
+  field(DESC, "Counter action calc")
+  field(INPA, "$(P):VALUE")
+  field(INPB, "$(P):NCOUNTS")
+  field(CALC, "A<B")
+  field(OUT,  "$(P):ACTION PP")
+}
+record( seq, "$(P):SEQ:RESET"){
+  field( DESC, "Reset sequence")
+  field( LNK1, "$(P):RESET.PROC")
+  field( DLY1, "0")
+}
+

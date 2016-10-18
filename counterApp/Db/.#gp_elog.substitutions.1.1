@@ -1,0 +1,28 @@
+#==============================================================
+#
+# Abs:  instantiate auto elog pv file
+#
+# Name: gp_elog.template
+#
+# Rem:  EPICS database template file
+#
+# Side:  for soft epics/gpib ioc
+#
+# Facility: SLAC/NLCTA/ESB 
+#
+# Auth:  18-Sep-2009, Janice Nelson (JNELSON)
+#==============================================================
+#
+# Mod:    
+#==============================================================
+#
+#
+file  db/gp_elog.db 
+{
+#           
+# IOC = station 4 letter descriptor
+#
+  pattern { IOC , TPRO}
+          { ESB:GP01, 0 }
+}
+

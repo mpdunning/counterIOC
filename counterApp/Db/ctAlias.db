@@ -1,0 +1,1 @@
+alias("$(P):COUNTER:SEQ:RESET","$(P):COUNTER:RESET")
